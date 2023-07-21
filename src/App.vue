@@ -1,9 +1,34 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>|
-    <router-link to="/setting">Setting</router-link>
-  </nav>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+          aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <img src="@/assets/img/movietitle4.png" alt="" height="50">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link to="/" class="nav-link">電影</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/tvseries" class="nav-link">影集</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/stars" class="nav-link">影星</router-link>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn " type="submit"></button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
   <router-view />
 </template>
 
@@ -21,8 +46,14 @@ body {
   background-color: black;
 }
 
-#header {
-  height: 72px;
+header{
+  height: 68px;
+}
+
+.navbar {
+  display: block !important;
+  padding: 0px 320px;
+  background-color: #131b3b;
 }
 
 @media screen and (max-width:1280px) {
@@ -33,11 +64,6 @@ body {
 
 button:focus {
   box-shadow: none !important;
-}
-
-.navbar {
-  padding: 0px 320px;
-  background-color: #131b3b;
 }
 
 .nav-link {
