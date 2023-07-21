@@ -41,7 +41,7 @@ export default {
                 height: 'calc(' + this.width + ' - ' + this.barWidth + ')',
                 borderRadius: '50%',
                 color: "white",
-                background: 'grey',
+                background: 'black',
                 position: 'absolute',
                 display: 'flex',
                 left: '50%',
@@ -51,6 +51,7 @@ export default {
                 justifyContent: 'center',
                 fontSize: '12px',
                 fontWeight: '700',
+                border: '1px solid white'
             };
         },
     }
@@ -70,5 +71,6 @@ export default {
     border-radius: 50%;
     margin: 0px auto;
     position: relative;
+    border: 1px solid white;
 }
 </style>
