@@ -1,5 +1,5 @@
 <template>
-  <div class="movie">
+  <div class="movie container">
     <TrendingMovie />
   </div>
 </template>
@@ -10,6 +10,6 @@ import TrendingMovie from '@/components/TrendingMovie.vue';
 
 export default {
   name: 'MovieView',
-  components: { TrendingMovie },  
+  components: { TrendingMovie },
 }
 </script>

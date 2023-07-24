@@ -29,7 +29,13 @@
       </div>
     </nav>
   </header>
+  <div class="Negative">
+    <img src="@/assets/img/底片.png" alt="">
+  </div>
   <router-view />
+  <div class="Negative">
+    <img src="@/assets/img/底片.png" alt="">
+  </div>
 </template>
 
 <style lang="scss">
@@ -44,10 +50,15 @@ body {
   margin: 0;
   padding: 0px;
   background-color: black;
+  color: white;
 }
 
-header{
-  height: 68px;
+header {
+  height: 72px;
+}
+
+.Negative img{
+  width: 100%;
 }
 
 .navbar {

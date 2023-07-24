@@ -1,8 +1,5 @@
 <template>
   <div class="trending">
-    <div>
-      <img src="@/assets/img/底片.png" width="100%" alt="">
-    </div>
     <div class="title_div">
       <p class="index_title">Trending Movies Today</p>
     </div>
@@ -12,13 +9,13 @@
         <div class="carousel_div">
           <img class="carousel_img" :src="getFullImageUrl(movie)" alt="Slide">
           <div class="vote_bar">
-            <Prograssbar :percent="Math.round(movie.vote_average * 10)"/>
+            <Prograssbar :percent="Math.round(movie.vote_average * 10)" />
           </div>
-        </div>
-        <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
-          <div id="shiny-shadow">
-            <router-link :to="`/trailers/${movie.id}/${movie.title}`"
-              class="trailer_btn"><span>Details</span></router-link>
+          <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
+            <div id="shiny-shadow">
+              <router-link :to="`/details/${movie.id}/${movie.title}`"
+                class="trailer_btn"><span>Details</span></router-link>
+            </div>
           </div>
         </div>
         <div class="m_title">
@@ -35,13 +32,13 @@
         <div class="carousel_div">
           <img class="carousel_img" :src="getFullImageUrl(movie)" alt="Slide">
           <div class="vote_bar">
-            <Prograssbar :percent="Math.round(movie.vote_average * 10)"/>
+            <Prograssbar :percent="Math.round(movie.vote_average * 10)" />
           </div>
-        </div>
-        <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
-          <div id="shiny-shadow">
-            <router-link :to="`/trailers/${movie.id}/${movie.title}`"
-              class="trailer_btn"><span>Details</span></router-link>
+          <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
+            <div id="shiny-shadow">
+              <router-link :to="`/details/${movie.id}/${movie.title}`"
+                class="trailer_btn"><span>Details</span></router-link>
+            </div>
           </div>
         </div>
         <div class="m_title">
@@ -214,7 +211,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style lang="scss">
 template {
   margin-top: 68px;
 }
@@ -226,9 +223,8 @@ template {
 .index_title {
   font-size: 2rem;
   color: white;
-  margin: 30px 0 16px 40px;
+  margin: 30px 0 30px 0;
   border-bottom: 4px solid rgba(228, 180, 49, 0.829);
-
 }
 
 .carousel_img {
@@ -275,6 +271,7 @@ template {
   transform: translate(-50%, -50%);
   text-align: center;
   transition: opacity 0s ease;
+  z-index: 100000;
 }
 
 .movie_poster {
@@ -301,10 +298,8 @@ template {
 .trailer_btn {
   border: 1px solid rgba(228, 180, 49, 0.829);
   background: transparent;
-  text-transform: uppercase;
   color: white;
-  padding: 14px 32px;
-  font-weight: 700;
+  padding: 10px 24px;
   outline: none;
   overflow: hidden;
   position: relative;
@@ -338,7 +333,7 @@ span {
   color: white;
   text-align: center;
   font-size: 1rem;
-  padding: 0 20px;
+  padding: 0 18px;
 }
 
 .vote_bar {
@@ -347,6 +342,4 @@ span {
   right: 1.5%;
   z-index: 100;
 }
-
-
 </style>

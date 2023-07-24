@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MovieView from '../views/MovieView.vue'
 import TVseriesView from '../views/TVseriesView.vue'
-import Trailers from '../views/Trailers.vue'
+import Details from '../views/Details.vue'
 
 const routes = [
   {
-    path: '/trailers/:movieid/:movietitle',
-    name: 'trailers',
-    component: Trailers
+    path: '/details/:movieid/:movietitle',
+    name: 'details',
+    component: Details
   },
   {
     path: '/',

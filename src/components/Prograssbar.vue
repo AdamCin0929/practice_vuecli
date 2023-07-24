@@ -12,8 +12,8 @@ export default {
     props: ['percent'],
     data: function () {
         return {
-            width: '60px',
-            barWidth: '16px'
+            width: '50px',
+            barWidth: '12px'
         }
     },
     computed: {
