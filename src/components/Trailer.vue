@@ -43,6 +43,11 @@
                         </template>
                     </div>
                     <hr>
+                    <div>
+                        <span v-if="firstWriter" style="color: rgba(228, 180, 49, 0.829);">
+                            {{ firstWriter.name }}&nbsp;
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -88,7 +93,9 @@ export default {
             videoKey: null,
             movieImg: [],
             movieDetails: [],
-            movieCredits: [],
+            movieCredits: {
+                crew: []
+            },
             slideIndex: 0
         };
     },
@@ -204,6 +211,11 @@ export default {
                 height: '480',
                 width: '853',
                 videoId: this.videoKey,
+                playerVars: {
+                    fs: 0,
+                    modestbranding: 1,
+                    rel: 0,
+                },
             });
         },
     },
@@ -214,6 +226,9 @@ export default {
                 return baseUrl + image.file_path; // 将固定路径和图片名进行拼接
             };
         },
+        firstWriter() {
+            return this.movieCredits.crew.find(person_ => person_.job === 'Writer');
+        }
     }
 }
 </script>
