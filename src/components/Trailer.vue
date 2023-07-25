@@ -22,12 +22,38 @@
                             </span>
                         </template>
                     </div>
-                    <hr>
+
                     <div>
-                        <span style="font-weight: 700;">Writer&nbsp;&nbsp;&nbsp;</span>
+                        <span v-if="firstWriter" style="font-weight: 700;">
+                            <hr>
+                            {{ firstWriter.job }}&nbsp;&nbsp;&nbsp;
+                        </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Writer' || crew.job === 'Novel' || crew.job === 'Story'"
-                                style="color: rgba(228, 180, 49, 0.829);">
+                            <span v-if="crew.job === 'Writer'" style="color: rgba(228, 180, 49, 0.829);">
+                                {{ crew.name }}&nbsp;
+                            </span>
+                        </template>
+                    </div>
+
+                    <div>
+                        <span v-if="firstNovel" style="font-weight: 700;">
+                            <hr>
+                            {{ firstNovel.job }}&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <template v-for="crew in movieCredits.crew">
+                            <span v-if="crew.job === 'Novel'" style="color: rgba(228, 180, 49, 0.829);">
+                                {{ crew.name }}&nbsp;
+                            </span>
+                        </template>
+                    </div>
+
+                    <div>
+                        <span v-if="firstStory" style="font-weight: 700;">
+                            <hr>
+                            {{ firstStory.job }}&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <template v-for="crew in movieCredits.crew">
+                            <span v-if="crew.job === 'Story'" style="color: rgba(228, 180, 49, 0.829);">
                                 {{ crew.name }}&nbsp;
                             </span>
                         </template>
@@ -43,11 +69,6 @@
                         </template>
                     </div>
                     <hr>
-                    <div>
-                        <span v-if="firstWriter" style="color: rgba(228, 180, 49, 0.829);">
-                            {{ firstWriter.name }}&nbsp;
-                        </span>
-                    </div>
                 </div>
             </div>
 
@@ -228,6 +249,12 @@ export default {
         },
         firstWriter() {
             return this.movieCredits.crew.find(person_ => person_.job === 'Writer');
+        },
+        firstNovel() {
+            return this.movieCredits.crew.find(person_ => person_.job === 'Novel');
+        },
+        firstStory() {
+            return this.movieCredits.crew.find(person_ => person_.job === 'Story');
         }
     }
 }
