@@ -64,7 +64,7 @@ export default {
   },
   data() {
     return {
-      apiKey: process.env.VUE_APP_API_KEY,
+      api_Key: process.env.VUE_APP_API_KEY,
       trendingMovies: [],
       upcomingMovies: [],
       error: null,
@@ -79,7 +79,7 @@ export default {
     fetchtrendingData() {
       const url = `https://api.themoviedb.org/3/trending/movie/day`;
       const headers = {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'Authorization': `Bearer ${this.api_Key}`,
         'Content-Type': 'application/json',
       };
       axios.get(url, { headers })
@@ -143,7 +143,7 @@ export default {
     fetchupcomingData() {
       const url = `https://api.themoviedb.org/3/movie/upcoming`;
       const headers = {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'Authorization': `Bearer ${this.api_Key}`,
         'Content-Type': 'application/json',
       };
       axios.get(url, { headers })
