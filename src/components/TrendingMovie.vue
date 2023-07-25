@@ -64,7 +64,7 @@ export default {
   },
   data() {
     return {
-      apiKey: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYjQ3NjVmZDEwZmUyNGQxMmQ0MGRjNWQ1NjgzY2I5YiIsInN1YiI6IjY0NzgwM2FlMDc2Y2U4MDE0OWVkYjYzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GTd83wKGglXe42txhEeDSdzdosIAHlJTiIndkIUBB-M',
+      apiKey: process.env.VUE_APP_API_KEY,
       trendingMovies: [],
       upcomingMovies: [],
       error: null,

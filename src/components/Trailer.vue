@@ -1,19 +1,24 @@
 <template>
     <div class="trailer">
-        <div class="index_title">Information</div>
+        <div class="index_title">{{ movieTitle }}</div>
         <div class="trailer_container">
             <div class="row">
 
                 <!-- youtube -->
                 <div id="player" class="col-lg-8"></div>
                 <div class="col-lg-4">
-                    <h4 style="font-weight: 700;">{{ movieTitle }}</h4>
                     <span
                         style="white-space: nowrap; font-weight: 700; color: white; background-color:rgba(228, 180, 49, 0.829); padding: 0 8px 2px 8px; margin: 0 8px 0 0; border-radius: 12px; border: 1px solid rgba(228, 180, 49, 0.829);"
                         v-for="genres_n in movieDetails.genres">{{
                             genres_n.name }}</span>
                     <br>
                     <br>
+                    <div>
+                        <p>
+                            {{ movieDetails.overview }}
+                        </p>
+                    </div>
+                    <hr>
                     <div>
                         <span style="font-weight: 700;">Director&nbsp;&nbsp;&nbsp;</span>
                         <template v-for="crew in movieCredits.crew">
@@ -69,6 +74,12 @@
                         </template>
                     </div>
                     <hr>
+                    <div>
+                        <span style="font-weight: 700;">Runtime&nbsp;&nbsp;&nbsp;</span>
+                        <span style="color: rgba(228, 180, 49, 0.829);">
+                            {{ movieDetails.runtime }}&nbsp;mins
+                        </span>
+                    </div>
                 </div>
             </div>
 
@@ -108,7 +119,7 @@ export default {
     name: 'Trailer',
     data() {
         return {
-            apiKey: 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxYjQ3NjVmZDEwZmUyNGQxMmQ0MGRjNWQ1NjgzY2I5YiIsInN1YiI6IjY0NzgwM2FlMDc2Y2U4MDE0OWVkYjYzOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GTd83wKGglXe42txhEeDSdzdosIAHlJTiIndkIUBB-M',
+            apiKey: process.env.VUE_APP_API_KEY,
             movieId: null,
             movieTitle: null,
             videoKey: null,
