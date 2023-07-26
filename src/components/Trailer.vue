@@ -22,7 +22,8 @@
                     <div>
                         <span style="font-weight: 700;">Director&nbsp;&nbsp;&nbsp;</span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Director'" style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                            <span v-if="crew.job === 'Director'"
+                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
                                 {{ crew.name }}&nbsp;
                             </span>
                         </template>
@@ -34,7 +35,8 @@
                             {{ firstWriter.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Writer'" style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                            <span v-if="crew.job === 'Writer'"
+                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
                                 {{ crew.name }}&nbsp;
                             </span>
                         </template>
@@ -46,7 +48,8 @@
                             {{ firstNovel.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Novel'" style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                            <span v-if="crew.job === 'Novel'"
+                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
                                 {{ crew.name }}&nbsp;
                             </span>
                         </template>
@@ -58,7 +61,8 @@
                             {{ firstStory.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Story'" style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                            <span v-if="crew.job === 'Story'"
+                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
                                 {{ crew.name }}&nbsp;
                             </span>
                         </template>
@@ -358,5 +362,4 @@ export default {
 .active,
 .demo:hover {
     opacity: 1;
-}
-</style>
+}</style>
