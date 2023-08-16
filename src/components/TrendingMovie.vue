@@ -14,7 +14,7 @@
           <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
             <div id="shiny-shadow">
               <router-link :to="`/details/${movie.id}/${movie.title}`"
-                class="trailer_btn"><span>Details</span></router-link>
+                class="trailer_btn"><span>more</span></router-link>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
           <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
             <div id="shiny-shadow">
               <router-link :to="`/details/${movie.id}/${movie.title}`"
-                class="trailer_btn"><span>Details</span></router-link>
+                class="trailer_btn"><span>more</span></router-link>
             </div>
           </div>
         </div>

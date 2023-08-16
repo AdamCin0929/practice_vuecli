@@ -84,23 +84,32 @@
                             {{ movieDetails.runtime }}&nbsp;mins
                         </span>
                     </div>
+                    <hr>
+                    <div>
+                        <span style="font-weight: 700;">Release Date&nbsp;&nbsp;&nbsp;</span>
+                        <span style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                            {{ movieDetails.release_date }}
+                        </span>
+                    </div>
                 </div>
             </div>
 
+            <div class="index_title">Backdrops</div>
             <!-- Container for the image gallery -->
             <div class="img_container">
                 <div v-for="(image, index) in movieImg" :key="index">
                     <!-- Full-width images with number text -->
                     <div class="mySlides">
-                        <div class="numbertext">{{ index + 1 }} / {{ movieImg.length }}</div>
                         <img class="movie_img" :src="getFullImageUrl(image)" alt="Slide" :style="{ width: '100%' }">
+                        <a class="imgPrev" @click="plusSlides(-1)" data-bs-no-jquery>&#10094;</a>
+                        <a class="imgNext" @click="plusSlides(1)" data-bs-no-jquery>&#10095;</a>
                     </div>
+
                 </div>
 
 
                 <!-- Next and previous buttons -->
-                <a class="imgPrev" @click="plusSlides(-1)" data-bs-no-jquery>&#10094;</a>
-                <a class="imgNext" @click="plusSlides(1)" data-bs-no-jquery>&#10095;</a>
+
 
                 <!-- Image text -->
                 <div class="caption-container">
@@ -135,7 +144,6 @@ export default {
         };
     },
     created() {
-        var urlParams = new URLSearchParams(window.location.search);
         this.movieId = this.$route.params.movieid;
         this.movieTitle = this.$route.params.movietitle;
         this.slideIndex = 0;
@@ -149,7 +157,6 @@ export default {
             let i;
             let slides = document.getElementsByClassName("mySlides");
             let dots = document.getElementsByClassName("demo");
-            let captionText = document.getElementById("caption");
             if (n >= this.movieImg.length) {
                 this.slideIndex = 0; // 循環顯示，回到第一張圖片
             } else if (n < 0) {
@@ -180,7 +187,7 @@ export default {
             };
             axios.get(url, { headers })
                 .then(response => {
-                    this.movieImg = response.data.backdrops.slice(0, 5);
+                    this.movieImg = response.data.backdrops.slice(0, 10);
                     this.$nextTick(() => {
                         this.showSlides(0);
                     });
@@ -256,7 +263,7 @@ export default {
     },
     computed: {
         getFullImageUrl() {
-            const baseUrl = 'https://image.tmdb.org/t/p/w500'; // 固定的图片路径前缀
+            const baseUrl = 'https://image.tmdb.org/t/p/original'; // 固定的图片路径前缀
             return function (image) {
                 return baseUrl + image.file_path; // 将固定路径和图片名进行拼接
             };
@@ -278,7 +285,7 @@ export default {
 /* Position the image container (needed to position the left and right arrows) */
 .img_container {
     position: relative;
-    width: 501px;
+    width: 100%;
 }
 
 /* Hide the images by default */
@@ -296,19 +303,22 @@ export default {
 .imgNext {
     cursor: pointer;
     position: absolute;
-    top: 35%;
-    width: auto;
+    top: 50%;
     padding: 16px;
     color: rgba(228, 180, 49, 0.829);
     font-weight: bold;
     font-size: 20px;
-    border-radius: 0 3px 3px 0;
     user-select: none;
     -webkit-user-select: none;
     text-decoration: none;
 }
 
 /* Position the "next button" to the right */
+.imgPrev {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
 .imgNext {
     right: 0;
     border-radius: 3px 0 0 3px;
@@ -321,19 +331,10 @@ export default {
     color: #f2f2f2;
 }
 
-/* Number text (1/3 etc) */
-.numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
-
 /* Container for image text */
 .caption-container {
-    background-color: #131b3b;
-    padding: 2px 16px;
+    background-color: rgba(228, 180, 49, 0.829);
+    padding: 2px;
 }
 
 .imgRow:after {
@@ -349,7 +350,7 @@ export default {
 
 .imgColumn {
     float: left;
-    width: 20% !important;
+    width: 10% !important;
     padding: 0 0 !important;
 }
 
@@ -362,4 +363,5 @@ export default {
 .active,
 .demo:hover {
     opacity: 1;
-}</style>
+}
+</style>
