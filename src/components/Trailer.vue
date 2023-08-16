@@ -22,10 +22,10 @@
                     <div>
                         <span style="font-weight: 700;">Director&nbsp;&nbsp;&nbsp;</span>
                         <template v-for="crew in movieCredits.crew">
-                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
-                                    v-if="crew.job === 'Director'">
-                                    {{ crew.name }}<span style="text-decoration: none; !important">&nbsp;</span>
-                                </span></router-link>
+                            <router-link v-if="crew.job === 'Director'" :to="`/people_info/${crew.id}`"
+                                class="movie_info"><span style="text-decoration: underline;">
+                                    {{ crew.name }}
+                                </span><span>&nbsp;</span></router-link>
                         </template>
                     </div>
 
@@ -35,10 +35,10 @@
                             {{ firstWriter.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
-                                    v-if="crew.job === 'Writer'">
-                                    {{ crew.name }}<span style="text-decoration: none;">&nbsp;</span>
-                                </span></router-link>
+                            <router-link v-if="crew.job === 'Writer'" :to="`/people_info/${crew.id}`"
+                                class="movie_info"><span style="text-decoration: underline;">
+                                    {{ crew.name }}
+                                </span><span>&nbsp;</span></router-link>
                         </template>
                     </div>
 
@@ -48,10 +48,10 @@
                             {{ firstNovel.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
-                                    v-if="crew.job === 'Novel'">
-                                    {{ crew.name }}<span style="text-decoration: none;">&nbsp;</span>
-                                </span></router-link>
+                            <router-link v-if="crew.job === 'Novel'" :to="`/people_info/${crew.id}`"
+                                class="movie_info"><span style="text-decoration: underline;">
+                                    {{ crew.name }}
+                                </span><span>&nbsp;</span></router-link>
                         </template>
                     </div>
 
@@ -61,19 +61,19 @@
                             {{ firstStory.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
-                                    v-if="crew.job === 'Story'">
-                                    {{ crew.name }}<span style="text-decoration: none;">&nbsp;</span>
-                                </span></router-link>
+                            <router-link v-if="crew.job === 'Story'" :to="`/people_info/${crew.id}`"
+                                class="movie_info"><span style="text-decoration: underline;">
+                                    {{ crew.name }}
+                                </span><span>&nbsp;</span></router-link>
                         </template>
                     </div>
                     <hr>
                     <div>
                         <span style="font-weight: 700;">Stars&nbsp;&nbsp;&nbsp;</span>
                         <template v-for="cast in movieCredits.cast">
-                            <router-link :to="`/people_info/${cast.id}`" class="movie_info"><span
-                                    style="text-decoration: underline;"
-                                    v-if="cast.order == 0 || cast.order == 1 || cast.order == 2">
+                            <router-link v-if="cast.order == 0 || cast.order == 1 || cast.order == 2"
+                                :to="`/people_info/${cast.id}`" class="movie_info"><span
+                                    style="text-decoration: underline;">
                                     {{ cast.name }}
                                 </span><span>&nbsp;</span></router-link>
                         </template>
@@ -289,6 +289,10 @@ export default {
     white-space: nowrap;
     color: rgba(228, 180, 49, 0.829);
     text-decoration: none;
+}
+
+.movie_info:hover {
+    text-shadow: 0.05em 0.05em 0.2em rgba(228, 180, 49, 0.829);
 }
 
 /* Position the image container (needed to position the left and right arrows) */

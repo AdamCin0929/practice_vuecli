@@ -33,7 +33,7 @@
     <img src="@/assets/img/底片.png" alt="">
   </div>
   <router-view />
-  <div class="Negative">
+  <div class="Negative" style="padding-top: 30px ;">
     <img src="@/assets/img/底片.png" alt="">
   </div>
 </template>
@@ -79,7 +79,7 @@ button:focus {
 
 .nav-link {
   color: white !important;
-  transition: all 0.05s ease-in-out 0.2s !important;
+  transition: all 0.05s ease-in-out 0.15s !important;
   font-size: 1rem;
 }
 
