@@ -22,10 +22,10 @@
                     <div>
                         <span style="font-weight: 700;">Director&nbsp;&nbsp;&nbsp;</span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Director'"
-                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
-                                {{ crew.name }}&nbsp;
-                            </span>
+                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
+                                    v-if="crew.job === 'Director'">
+                                    {{ crew.name }}<span style="text-decoration: none; !important">&nbsp;</span>
+                                </span></router-link>
                         </template>
                     </div>
 
@@ -35,10 +35,10 @@
                             {{ firstWriter.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Writer'"
-                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
-                                {{ crew.name }}&nbsp;
-                            </span>
+                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
+                                    v-if="crew.job === 'Writer'">
+                                    {{ crew.name }}<span style="text-decoration: none;">&nbsp;</span>
+                                </span></router-link>
                         </template>
                     </div>
 
@@ -48,10 +48,10 @@
                             {{ firstNovel.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Novel'"
-                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
-                                {{ crew.name }}&nbsp;
-                            </span>
+                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
+                                    v-if="crew.job === 'Novel'">
+                                    {{ crew.name }}<span style="text-decoration: none;">&nbsp;</span>
+                                </span></router-link>
                         </template>
                     </div>
 
@@ -61,33 +61,34 @@
                             {{ firstStory.job }}&nbsp;&nbsp;&nbsp;
                         </span>
                         <template v-for="crew in movieCredits.crew">
-                            <span v-if="crew.job === 'Story'"
-                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
-                                {{ crew.name }}&nbsp;
-                            </span>
+                            <router-link :to="`/people_info/${crew.id}`" class="movie_info"><span
+                                    v-if="crew.job === 'Story'">
+                                    {{ crew.name }}<span style="text-decoration: none;">&nbsp;</span>
+                                </span></router-link>
                         </template>
                     </div>
                     <hr>
                     <div>
                         <span style="font-weight: 700;">Stars&nbsp;&nbsp;&nbsp;</span>
                         <template v-for="cast in movieCredits.cast">
-                            <span v-if="cast.order == 0 || cast.order == 1 || cast.order == 2"
-                                style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
-                                {{ cast.name }}&nbsp;&nbsp;
-                            </span>
+                            <router-link :to="`/people_info/${cast.id}`" class="movie_info"><span
+                                    style="text-decoration: underline;"
+                                    v-if="cast.order == 0 || cast.order == 1 || cast.order == 2">
+                                    {{ cast.name }}
+                                </span><span>&nbsp;</span></router-link>
                         </template>
                     </div>
                     <hr>
                     <div>
                         <span style="font-weight: 700;">Runtime&nbsp;&nbsp;&nbsp;</span>
-                        <span style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                        <span>
                             {{ movieDetails.runtime }}&nbsp;mins
                         </span>
                     </div>
                     <hr>
                     <div>
                         <span style="font-weight: 700;">Release Date&nbsp;&nbsp;&nbsp;</span>
-                        <span style="white-space: nowrap; color: rgba(228, 180, 49, 0.829);">
+                        <span>
                             {{ movieDetails.release_date }}
                         </span>
                     </div>
@@ -125,6 +126,7 @@
             </div>
         </div>
     </div>
+    <router-view />
 </template>
   
 <script>
@@ -132,6 +134,7 @@ export default {
     name: 'Trailer',
     data() {
         return {
+            api_Key: process.env.VUE_APP_API_KEY,
             movieId: null,
             movieTitle: null,
             videoKey: null,
@@ -182,7 +185,7 @@ export default {
         fetchMovieImages() {
             const url = `https://api.themoviedb.org/3/movie/${this.movieId}/images`;
             const headers = {
-                'Authorization': `Bearer ${process.env.VUE_APP_API_KEY}`,
+                'Authorization': `Bearer ${this.api_Key}`,
                 'Content-Type': 'application/json',
             };
             axios.get(url, { headers })
@@ -199,7 +202,7 @@ export default {
         fetchMovieVideos() {
             const url = `https://api.themoviedb.org/3/movie/${this.movieId}/videos`;
             const headers = {
-                'Authorization': `Bearer ${process.env.VUE_APP_API_KEY}`,
+                'Authorization': `Bearer ${this.api_Key}`,
                 'Content-Type': 'application/json',
             };
             axios.get(url, { headers })
@@ -218,7 +221,7 @@ export default {
         fetchMovieDetails() {
             const url = `https://api.themoviedb.org/3/movie/${this.movieId}`;
             const headers = {
-                'Authorization': `Bearer ${process.env.VUE_APP_API_KEY}`,
+                'Authorization': `Bearer ${this.api_Key}`,
                 'Content-Type': 'application/json',
             };
             axios.get(url, { headers })
@@ -232,7 +235,7 @@ export default {
         fetchMovieCredits() {
             const url = `https://api.themoviedb.org/3/movie/${this.movieId}/credits`;
             const headers = {
-                'Authorization': `Bearer ${process.env.VUE_APP_API_KEY}`,
+                'Authorization': `Bearer ${this.api_Key}`,
                 'Content-Type': 'application/json',
             };
             axios.get(url, { headers })
@@ -282,6 +285,12 @@ export default {
 </script>
 
 <style>
+.movie_info {
+    white-space: nowrap;
+    color: rgba(228, 180, 49, 0.829);
+    text-decoration: none;
+}
+
 /* Position the image container (needed to position the left and right arrows) */
 .img_container {
     position: relative;
@@ -303,7 +312,7 @@ export default {
 .imgNext {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 40%;
     padding: 16px;
     color: rgba(228, 180, 49, 0.829);
     font-weight: bold;

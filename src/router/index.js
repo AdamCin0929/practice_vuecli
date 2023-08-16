@@ -2,8 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MovieView from '../views/MovieView.vue'
 import TVseriesView from '../views/TVseriesView.vue'
 import Details from '../views/Details.vue'
+import People from '../views/People.vue'
 
 const routes = [
+  {
+    path: '/people_info/:castid',
+    name: 'people_info',
+    component: People
+  },
   {
     path: '/details/:movieid/:movietitle',
     name: 'details',
