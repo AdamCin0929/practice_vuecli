@@ -33,7 +33,7 @@
     <img src="@/assets/img/底片.png" alt="">
   </div>
   <router-view />
-  <div class="Negative" style="padding-top: 30px ;">
+  <div class="Negative" style="position: relative; bottom: 0; padding-top: 30px;">
     <img src="@/assets/img/底片.png" alt="">
   </div>
 </template>
@@ -49,7 +49,7 @@ body {
   font-family: 思源黑體, 微軟正黑體, 蘋方黑體, 華康麗黑體, Helvetica, Arial, sans-serif, serif;
   margin: 0;
   padding: 0px;
-  background-color: black;
+  background-color: rgb(40, 39, 39);
   color: white;
 }
 
@@ -57,14 +57,21 @@ header {
   height: 72px;
 }
 
-.Negative img{
+.Negative img {
   width: 100%;
 }
 
 .navbar {
   display: block !important;
   padding: 0px 320px;
-  background-color: #131b3b;
+  background-color: black;
+}
+
+.index_title {
+  font-size: 2rem;
+  color: white;
+  margin: 30px 0 30px 0;
+  border-bottom: 4px solid rgba(228, 180, 49, 0.829);
 }
 
 @media screen and (max-width:1280px) {
@@ -90,7 +97,6 @@ button:focus {
 .container-fluid {
   padding: 6px;
 }
-
 
 .d-flex input {
   width: 260px;

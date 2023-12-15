@@ -13,13 +13,9 @@
           </div>
           <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
             <div id="shiny-shadow">
-              <router-link :to="`/details/${movie.id}/${movie.title}`"
-                class="trailer_btn"><span>more</span></router-link>
+              <router-link :to="`/details/${movie.id}/${movie.title}`" class="trailer_btn"><span>more</span></router-link>
             </div>
           </div>
-        </div>
-        <div class="m_title">
-          <p>{{ movie.title }}</p>
         </div>
       </div>
     </div>
@@ -36,13 +32,9 @@
           </div>
           <div class="movieDetails" :style="{ opacity: movie.showDetails ? 1 : 0 }">
             <div id="shiny-shadow">
-              <router-link :to="`/details/${movie.id}/${movie.title}`"
-                class="trailer_btn"><span>more</span></router-link>
+              <router-link :to="`/details/${movie.id}/${movie.title}`" class="trailer_btn"><span>more</span></router-link>
             </div>
           </div>
-        </div>
-        <div class="m_title">
-          <p>{{ movie.title }}</p>
         </div>
       </div>
     </div>
@@ -218,13 +210,6 @@ template {
 
 .title_div {
   width: auto;
-}
-
-.index_title {
-  font-size: 2rem;
-  color: white;
-  margin: 30px 0 30px 0;
-  border-bottom: 4px solid rgba(228, 180, 49, 0.829);
 }
 
 .carousel_img {

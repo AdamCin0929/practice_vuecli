@@ -7,11 +7,12 @@
                 <!-- youtube -->
                 <div id="player" class="col-lg-8"></div>
                 <div class="col-lg-4">
-                    <span
-                        style="white-space: nowrap; font-weight: 700; color: white; background-color:rgba(228, 180, 49, 0.829); padding: 0 8px 2px 8px; margin: 0 8px 0 0; border-radius: 12px; border: 1px solid rgba(228, 180, 49, 0.829);"
-                        v-for="genres_n in movieDetails.genres">{{
-                            genres_n.name }}</span>
-                    <br>
+                    <div style="padding-top: 10px;">
+                        <span
+                            style="white-space: nowrap; font-weight: 700; color: white; background-color:rgba(228, 180, 49, 0.829); padding: 0 8px 2px 8px; margin: 0 8px 0 0; border-radius: 12px; border: 1px solid rgba(228, 180, 49, 0.829);"
+                            v-for="genres_n in movieDetails.genres">{{
+                                genres_n.name }}</span>
+                    </div>                    
                     <br>
                     <div>
                         <p>
