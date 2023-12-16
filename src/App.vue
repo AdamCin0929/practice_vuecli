@@ -63,7 +63,7 @@ header {
 
 .navbar {
   display: block !important;
-  padding: 0px 320px;
+  padding: 0px 260px;
   background-color: black;
 }
 

@@ -1,16 +1,16 @@
 <template>
-    <div class="index_title">{{ people_details.name }}</div>
+    <div class="index_title">{{ people_details.name }} ({{ formattedBirthday }}{{ formattedDate }})</div>
     <div class="trailer_container">
         <div class="row">
             <div class="col-lg-2">
-                <img :src="getFullImageUrl(people_details)" alt="Slide">
+                <img :src="getFullImageUrl(people_details.profile_path)" alt="Slide">
             </div>
             <div class="col-lg-10">
                 <span>
                     {{ biographySummary }}
                 </span>
                 <!-- Button trigger modal -->
-                <button class="readall" type="button" @click="openModal">
+                <button v-if="showReadAllButton" class="readall" type="button" @click="openModal">
                     Read All
                 </button>
 
@@ -20,7 +20,7 @@
                     <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Biography</h5>
+                                <h2 class="modal-title" id="staticBackdropLabel">Biography</h2>
                                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -29,7 +29,6 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>
@@ -37,7 +36,11 @@
             </div>
         </div>
     </div>
-    <p>{{ people_details.birthday }}</p>
+    <div>
+        <span v-for="results in people_Taggedimg.results">
+            <img :src="getFullImageUrl(results.media.backdrop_path)" alt="Slide">            
+        </span>
+    </div>
 </template>
 <script>
 export default {
@@ -48,12 +51,14 @@ export default {
             api_Key: process.env.VUE_APP_API_KEY,
             castId: null,
             people_details: [],
-            maxSummaryLength: 1600
+            maxSummaryLength: 1600,
+            people_Taggedimg: []
         }
     },
     created() {
         this.castId = this.$route.params.castid;
         this.fetchPeopleDetails();
+        this.fetchPeopleTaggedimg();
     },
     methods: {
         openModal() {
@@ -86,13 +91,45 @@ export default {
                     console.error(error);
                 });
         },
+        fetchPeopleTaggedimg() {
+            const url = `https://api.themoviedb.org/3/person/${this.castId}/tagged_images?page=1`;
+            const headers = {
+                'Authorization': `Bearer ${this.api_Key}`,
+                'Content-Type': 'application/json',
+            };
+            axios.get(url, { headers })
+                .then(response => {
+                    this.people_Taggedimg = response.data;
+
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
     },
     computed: {
         getFullImageUrl() {
             const baseUrl = 'https://image.tmdb.org/t/p/w200'; // 固定的图片路径前缀
             return function (image) {
-                return baseUrl + image.profile_path; // 将固定路径和图片名进行拼接
+                return baseUrl + image; // 将固定路径和图片名进行拼接
             };
+        },
+        formattedBirthday() {
+            if (this.people_details && this.people_details.birthday) {
+                // 將生日日期格式從 "yyyy-mm-dd" 替換為 "yyyy/mm/dd"
+                return this.people_details.birthday.replace(/-/g, '/') + " - ";
+            }
+            return '';
+        },
+        deathday() {
+            if (this.people_details && this.people_details.deathday == null) {
+                return 'Now'
+            }
+
+            // 將死亡日期格式從 "yyyy-mm-dd" 替換為 "yyyy/mm/dd"
+            const formattedDate = this.people_details.deathday.replace(/-/g, '/');
+
+            return formattedDate
         },
         biographySummary() {
             if (this.people_details && this.people_details.biography) {
@@ -109,6 +146,9 @@ export default {
                     : '';
             }
             return ''; // 当 biography 不存在时返回空字符串
+        },
+        showReadAllButton() {
+            return this.people_details.biography && this.people_details.biography.length > this.maxSummaryLength;
         }
     }
 }
@@ -119,10 +159,11 @@ export default {
     background-color: rgb(40, 39, 39) !important;
 }
 
-.readall{
-    color: white;
-    background-color: rgba(228, 180, 49, 0.829);
+.readall {
+    color: rgba(228, 180, 49, 0.829);
+    background-color: transparent;
     border: none;
-    border-radius: 6px;
+    text-decoration: underline;
+    font-weight: 700;
 }
 </style>

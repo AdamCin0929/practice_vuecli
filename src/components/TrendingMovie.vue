@@ -79,7 +79,7 @@ export default {
           this.trendingMovies = response.data.results.map(movie => ({
             ...movie,
             showDetails: false,
-          }));;
+          }));
           this.$nextTick(() => {
             this.trendingCarousel();
           });
