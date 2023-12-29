@@ -2,7 +2,7 @@
     <div class="trailer">
         <div class="index_title">{{ movieTitle }}</div>
         <div class="trailer_container">
-            <div class="row">
+            <div class="row213">
 
                 <!-- youtube -->
                 <div id="player" class="col-lg-8"></div>
